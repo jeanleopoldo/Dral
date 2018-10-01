@@ -48,6 +48,7 @@ public class Teste {
 		//testa criar boneco segundo jogador
 		//this.controle.selecionarPersonagem(TipoPersonagem.BARDO);
 		this.tv.mostrarTabuleiroAtual();
+		//
 		
 	}
 
