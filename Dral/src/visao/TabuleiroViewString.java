@@ -14,7 +14,6 @@ public class TabuleiroViewString {
 	}
 
 	public void mostrarTabuleiroAtual() {
-		
 		int tamLinha = this.controle.getJogo().getTabuleiro().getTamLinha();
 		int tamColuna = this.controle.getJogo().getTabuleiro().getTamColuna();
 

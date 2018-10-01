@@ -1,4 +1,4 @@
-package controle; 
+package controle;
 
 import constante.Constantes;
 import modelo.jogador.Jogador;
@@ -6,37 +6,42 @@ import modelo.jogo.Jogo;
 import modelo.personagem.Personagem;
 import modelo.personagem.TipoPersonagem;
 import modelo.tabuleiro.Celula;
+import teste.Teste;
 import visao.TelaInicial;
 
 public class Controle {
 
 	private Jogo jogo;
-	private Jogador jogadorDaVez;	
+	private Jogador jogadorDaVez;
 
 	public Controle() {
-		new TelaInicial(this);
+		iniciarJogo();
+		new Teste(this);
+
 	}
 
 	public void iniciarJogo() {
 		this.jogo = new Jogo();
 		this.jogo.adicionarAreaDeCriacaoDosJogadores();
 		this.jogadorDaVez = this.jogo.getJogadorUm();
+
 	}
 
 	public void selecionarPersonagem(int x, int y, TipoPersonagem tipoPersonagem) {
-		
-       Personagem personagem = this.jogo.selecionarPersonagem(tipoPersonagem);
-       Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
 
-       if (clickedPosition.getPersonagem() == null && this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition)) {
-       		clickedPosition.setPersonagem(personagem);
-       		this.jogadorDaVez.adicionarPersonagem(personagem);	
-       }
+		Personagem personagem = this.jogo.selecionarPersonagem(tipoPersonagem);
+		Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
+		System.out.println(this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition));
 
-       if (this.atingiuLimiteDePersonagens()) {
-       		this.passarTurno();
-       }
-       
+		if (clickedPosition.getPersonagem() == null
+				&& this.jogadorDaVez.getAreaDeCriacao().estaDentroDaArea(clickedPosition)) {
+			clickedPosition.setPersonagem(personagem);
+			this.jogadorDaVez.adicionarPersonagem(personagem);
+		}
+
+		if (this.atingiuLimiteDePersonagens()) {
+			this.passarTurno();
+		}
 
 	}
 
@@ -46,8 +51,6 @@ public class Controle {
 		return false;
 	}
 
-	
-
 	public void verRegras() {
 
 	}
@@ -56,15 +59,13 @@ public class Controle {
 		System.exit(0);
 	}
 
-	
-
 	public void selecionarAcao(int x, int y) {
-        
+
 		Celula clickedPosition = this.jogo.getTabuleiro().getCelula(x, y);
 		Personagem personagem = clickedPosition.getPersonagem();
 		Celula celulaSelecionada = this.jogadorDaVez.getCelulaSelecionada();
 
-		System.out.println("posicao clicada: "+ x + ", " + y);
+		System.out.println("posicao clicada: " + x + ", " + y);
 
 		if (personagem != null) {
 
@@ -75,12 +76,16 @@ public class Controle {
 			} else {
 				// ATACAR
 				System.out.println("atacar");
-				//this.jogo.atacar(celulaSelecionada, clickedPosition);
+				// this.jogo.atacar(celulaSelecionada, clickedPosition);
+				this.jogadorDaVez.setCelulaSelecionada(null);
 			}
 		} else {
 			// MOVER
 			System.out.println("mover");
-			this.jogo.mover(celulaSelecionada, clickedPosition);
+			if (celulaSelecionada != null) {
+				this.jogo.mover(celulaSelecionada, clickedPosition);
+				this.jogadorDaVez.setCelulaSelecionada(null);
+			}
 		}
 	}
 
@@ -89,16 +94,16 @@ public class Controle {
 		if (jogo != null) {
 
 			this.jogadorDaVez.atualizarStatusDosPersonagens();
-			
+
 			if (this.jogadorDaVez == this.jogo.getJogadorUm()) {
 				this.jogadorDaVez = this.jogo.getJogadorDois();
 			} else {
 				this.jogadorDaVez = this.jogo.getJogadorUm();
 			}
-            
-            this.jogo.passarTurnoAtual();
+
+			this.jogo.passarTurnoAtual();
 		}
-        
+
 	}
 
 	public Jogo getJogo() {
