@@ -127,11 +127,11 @@ public class Jogo {
 
 
 		// Jogador DOIS
-		infEsquerda = this.tabuleiro.getCelula(0, 27);
-		supEsquerda = this.tabuleiro.getCelula(0, 23);
+		infEsquerda = this.tabuleiro.getCelula(0, 23);
+		supEsquerda = this.tabuleiro.getCelula(0, 27);
 
-		infDireita = this.tabuleiro.getCelula(27, 27);
-		supDireita = this.tabuleiro.getCelula(27, 23);
+		infDireita = this.tabuleiro.getCelula(27, 23);
+		supDireita = this.tabuleiro.getCelula(27, 27);
 
 		areaDeCriacao = new AreaDeCriacao(infEsquerda, supEsquerda, infDireita, supDireita);
 		this.jogadorDois.setAreaDeCriacao(areaDeCriacao);

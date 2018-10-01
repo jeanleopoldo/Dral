@@ -1,9 +1,7 @@
 package modelo.tabuleiro;
 
-import java.awt.Point;
-
-import modelo.personagem.Personagem;
 import constante.Constantes;
+import modelo.personagem.Personagem;
 
 public class Tabuleiro {
 

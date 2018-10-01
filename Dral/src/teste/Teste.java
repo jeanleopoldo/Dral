@@ -18,14 +18,16 @@ public class Teste {
 	public void run() {
 
 		//cria um boneco para teste
-		//this.controle.selecionarPersonagem(TipoPersonagem.ARQUEIRO);
+		this.controle.selecionarPersonagem(1,4, TipoPersonagem.ARQUEIRO);
 		
 		//atualiza tabuleiro
 		this.tv.mostrarTabuleiroAtual();
 		
 		//testa fazer acao (selecionar ou movimentar, por enquanto)
-		this.controle.selecionarAcao(0, 13);
-		this.controle.selecionarAcao(1, 13);
+		//seleciona
+		this.controle.selecionarAcao(1, 4);
+		//move
+		this.controle.selecionarAcao(1, 5);
 		this.tv.mostrarTabuleiroAtual();
 		
 		//testa se personagem anda além do range de movimento
@@ -46,7 +48,7 @@ public class Teste {
 		System.out.println(controle.getJogadorDaVez().getNome());
 
 		//testa criar boneco segundo jogador
-		//this.controle.selecionarPersonagem(TipoPersonagem.BARDO);
+		this.controle.selecionarPersonagem(1, 27, TipoPersonagem.BARDO);
 		this.tv.mostrarTabuleiroAtual();
 		//
 		
